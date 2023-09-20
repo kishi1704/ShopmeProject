@@ -4,3 +4,5 @@
 **/.project
 **/bin/
 **/user-photos/
+**/log/
+**/*.log
