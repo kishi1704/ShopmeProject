@@ -3,8 +3,6 @@ package com.shopme.admin.user;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,10 +14,13 @@ import org.springframework.stereotype.Service;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 
+import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
 public class UserService {
 	public static final int USERS_PER_PAGE = 4;
+	
 	@Autowired
 	private UserRepository userRepo;
 	
@@ -61,7 +62,6 @@ public class UserService {
 		
 		if(isUpdatingUser && user.getPassword().isEmpty()) {
 			User existingUser = userRepo.findById(user.getId()).get();
-			
 			user.setPassword(existingUser.getPassword());
 		}else {
 			encodePassword(user);

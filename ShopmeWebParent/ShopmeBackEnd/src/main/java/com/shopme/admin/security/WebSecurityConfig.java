@@ -41,20 +41,18 @@ public class WebSecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests()
-			.antMatchers("/users/**").hasAuthority("Admin")
-			.antMatchers("/categories/**").hasAnyAuthority("Admin", "Editor")
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
+		http.authorizeHttpRequests(authorize -> authorize
+				.requestMatchers("/users/**").hasAuthority("Admin")
+				.requestMatchers("/categories/**").hasAnyAuthority("Admin", "Editor")
+				.anyRequest().authenticated())
+			.formLogin(login -> login
 				.loginPage("/login")
 				.usernameParameter("email")
-				.permitAll()
-			.and().logout().permitAll()
-			.and()
-				.rememberMe()
-					.key("AbcDefgHijKlmnOpqrs_1234567890")
-					.tokenValiditySeconds(7 * 24 * 60 * 60);
+				.permitAll())
+			.logout(logout -> logout.permitAll())
+			.rememberMe(remember -> remember
+				.key("AbcDefgHijKlmnOpqrs_1234567890")
+				.tokenValiditySeconds(7 * 24 * 60 * 60));
 		
 		http.authenticationProvider(authenticationProvider());
 		
@@ -63,7 +61,7 @@ public class WebSecurityConfig {
 	
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**");
+		return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
 	}
 	
 }
