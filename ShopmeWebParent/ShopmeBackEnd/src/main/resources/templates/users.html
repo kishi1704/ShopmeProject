@@ -7,6 +7,8 @@
 	<title>Home - Shopme Admin</title>
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -87,14 +89,21 @@
 				<tbody>
 					<tr th:each="user: ${listUsers}">
 						<td>[[${user.id}]]</td>
-						<td></td>
+						<td><i class="fa-solid fa-image-portrait fa-3x icon-silver"></i></td>
 						<td>[[${user.email}]]</td>
 						<td>[[${user.firstName}]]</td>
 						<td>[[${user.lastName}]]</td>
 						<td>[[${user.roles}]]</td>
-						<td>[[${user.enabled}]]</td>
+						
 						<td>
-							Edit &nbsp; Delete
+							<a th:if="${user.enabled}" href=""><i class="fa-solid fa-circle-check fa-2x icon-green"></i></a>
+							<a th:if="${!user.enabled}" href=""><i class="fa-solid fa-circle-check fa-2x icon-silver"></i></a>
+						</td>
+						
+						<td>
+							<a href=""><i class="fa-solid fa-pen-to-square fa-2x icon-green"></i></a>
+							&nbsp; 
+							<a href=""><i class="fa-solid fa-trash fa-2x icon-dark"></i></a>
 						</td>
 					</tr>
 				</tbody>
