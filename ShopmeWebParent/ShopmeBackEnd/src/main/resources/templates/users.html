@@ -101,7 +101,9 @@
 						</td>
 						
 						<td>
-							<a href=""><i class="fa-solid fa-pen-to-square fa-2x icon-green"></i></a>
+							<a class="text-decoration-none link-opacity-10-hover" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user">
+								<i class="fa-solid fa-pen-to-square fa-2x icon-green"></i>
+							</a>
 							&nbsp; 
 							<a href=""><i class="fa-solid fa-trash fa-2x icon-dark"></i></a>
 						</td>
