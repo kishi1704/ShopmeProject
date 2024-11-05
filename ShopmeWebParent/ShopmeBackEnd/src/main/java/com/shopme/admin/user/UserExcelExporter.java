@@ -10,12 +10,14 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
 
 import com.shopme.common.entity.User;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Component("excelExporter")
 public class UserExcelExporter extends AbstractExporter {
 	
 	private XSSFWorkbook workbook;
@@ -59,6 +61,7 @@ public class UserExcelExporter extends AbstractExporter {
 		cell.setCellStyle(style);
 	}
 	
+	@Override
 	public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
 		
 		super.setResponseHeader(response, "application/octet-stream", ".xlsx");

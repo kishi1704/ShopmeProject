@@ -3,6 +3,7 @@ package com.shopme.admin.user;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
@@ -11,8 +12,10 @@ import com.shopme.common.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+@Component("csvExporter")
 public class UserCsvExporter extends AbstractExporter {
 	
+	@Override
 	public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
 		
 		super.setResponseHeader(response, "text/csv", ".csv");

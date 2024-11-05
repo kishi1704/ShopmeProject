@@ -1,12 +1,16 @@
 package com.shopme.admin.user;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import com.shopme.common.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AbstractExporter {
+public abstract class AbstractExporter {
 	
 	public void setResponseHeader(HttpServletResponse response, String contentType,
 			String extension) {
@@ -20,5 +24,7 @@ public class AbstractExporter {
 		String headerValue = "attachment; filename=" + fileName;
 		response.setHeader(headerKey, headerValue);
 	}
+	
+	public abstract void export(List<User> listUsers, HttpServletResponse response) throws IOException;
 	
 }
