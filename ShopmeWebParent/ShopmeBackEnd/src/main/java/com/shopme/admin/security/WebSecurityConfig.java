@@ -41,7 +41,8 @@ public class WebSecurityConfig {
 			.formLogin(form -> form
 					.loginPage("/login")
 					.usernameParameter("email")
-					.permitAll());
+					.permitAll())
+			.logout(logout -> logout.permitAll());;
 		
 		return http.build();
 	}
