@@ -56,7 +56,9 @@
 							<th th:replace="fragments :: column_link('id', 'User ID', 'tag')">
 						</th>						
 						<th>Photos</th>
-						<th th:replace="fragments :: column_link('email', 'E-mail', 'tag')">	
+						<th class="hideable-column">
+							<th th:replace="fragments :: column_link('email', 'E-mail', 'tag')">
+						</th>	
 						<th th:replace="fragments :: column_link('firstName', 'First Name', 'none')">	
 						<th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')">	
 						<th>Roles</th>
