@@ -35,6 +35,7 @@ public class WebSecurityConfig {
 		http.authenticationProvider(authenticationProvider());
 		
 		http.authorizeHttpRequests(auth -> auth
+				.requestMatchers("/users/**").hasAuthority("Admin")
 				.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
 				.anyRequest().authenticated()
 			)
